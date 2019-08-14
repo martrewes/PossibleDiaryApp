@@ -1,4 +1,5 @@
-﻿Imports System.IO
+﻿'This is to test GitHub repo changes
+Imports System.IO
 Public Class MainForm
     Dim folderpath As String
     Dim lblString As String
