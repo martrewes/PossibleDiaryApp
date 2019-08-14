@@ -1,0 +1,31 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+WindowsApp1
+</name>
+</assembly>
+<members>
+<member name="T:WindowsApp1.My.Resources.Resources">
+<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+<member name="P:WindowsApp1.My.Resources.Resources.ResourceManager">
+<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member>
+<member name="P:WindowsApp1.My.Resources.Resources.Culture">
+<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member>
+<member name="M:WindowsApp1.Iconhelper.Iconhelper.GetIconImage(System.String,WindowsApp1.Iconhelper.IconSizes)">
+ <summary>Gets a Bitmap image of the specified file or folder icon.</summary>
+ <param name="FileOrFolderPath">The full path to the folder or file to get the icon image from, or just a file extension (.ext) to get the registered icon image of the file type.</param>
+ <param name="IconSize">The size of the icon to retrieve.</param>
+</member>
+</members>
+</doc>

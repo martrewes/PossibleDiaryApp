@@ -1,0 +1,11 @@
+C:\Users\marti\source\repos\WindowsApp1\bin\Debug\WindowsApp1.exe
+C:\Users\marti\source\repos\WindowsApp1\bin\Debug\WindowsApp1.pdb
+C:\Users\marti\source\repos\WindowsApp1\bin\Debug\WindowsApp1.xml
+C:\Users\marti\source\repos\WindowsApp1\obj\Debug\WindowsApp1.MainForm.resources
+C:\Users\marti\source\repos\WindowsApp1\obj\Debug\WindowsApp1.Resources.resources
+C:\Users\marti\source\repos\WindowsApp1\obj\Debug\PossibleDiary.vbproj.GenerateResource.cache
+C:\Users\marti\source\repos\WindowsApp1\obj\Debug\PossibleDiary.vbproj.CoreCompileInputs.cache
+C:\Users\marti\source\repos\WindowsApp1\obj\Debug\WindowsApp1.exe
+C:\Users\marti\source\repos\WindowsApp1\obj\Debug\WindowsApp1.xml
+C:\Users\marti\source\repos\WindowsApp1\obj\Debug\WindowsApp1.pdb
+C:\Users\marti\source\repos\WindowsApp1\obj\Debug\PossibleDiary.vbprojAssemblyReference.cache
