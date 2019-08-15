@@ -3,13 +3,17 @@ This is just an experiment to see if I can create an application that functions 
 Created in VB.Net
 
 ## Usage
-When the application starts up, you must select the root folder of your diary. Once selected, you will now be able to add entries by selecting a date on the calendar. This will create a simple .txt file organised in a RootFolder\\Year\\Month\\Day.txt hierarchy that can be seen in the TreeView box.
+When the application starts up, you must select the root folder of your diary. Once selected, you will now be able to add entries by selecting a date on the calendar. This will create a simple .txt file organised in a RootFolder\\Year\\Month\\Day.txt hierarchy that can be seen in the TreeView box. You can also take these files anywhere else as they are plain text.
 
 ## Features
 * Can choose where to save your diary to
 * Simple interface, can select date and file is made automatically
 * Portable (Extract and run)
 * Works on Linux under Wine (Tested Wine 4.0 + Mono)
+
+## Planned Features
+* Export to .zip file
+* Encription (hopefully)
 
 ## Changelog
 * Root of Diary selection saved for next open
