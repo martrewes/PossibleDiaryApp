@@ -1,17 +1,28 @@
-﻿'This is to test GitHub repo changes
-Imports System.IO
+﻿Imports System.IO
 Public Class MainForm
     Dim folderpath As String
     Dim lblString As String
     Private Sub FormLoad() Handles Me.Load
-        If (fbDialog.ShowDialog() = DialogResult.OK) Then
-            folderpath = fbDialog.SelectedPath
 
-            AddCustomFolderRootNode(folderpath)
-        Else
-            MessageBox.Show("You must select a folder")
+        If My.Settings.RootPath = "" Then
 
+            If (fbDialog.ShowDialog() = DialogResult.OK) Then
+                folderpath = fbDialog.SelectedPath
+            Else
+                MessageBox.Show("You must select a folder")
+
+            End If
+        Else folderpath = My.Settings.RootPath
         End If
+        AddCustomFolderRootNode(folderpath)
+        ReadData()
+        tvbRoot.BeginUpdate()
+        tvbRoot.EndUpdate()
+        My.Settings.RootPath = folderpath
+        lblDateText.Text = calMonth.SelectionRange.Start.DayOfWeek.ToString & ", " & calMonth.SelectionRange.Start.ToLongDateString
+
+
+
     End Sub
 
     Private Sub calMonth_Click(sender As Object, e As EventArgs) Handles calMonth.MouseClick
@@ -21,6 +32,16 @@ Public Class MainForm
     End Sub
 
     Private Sub MonthCalendar1_DateChanged(sender As Object, e As DateRangeEventArgs) Handles calMonth.DateChanged
+
+        If lblDate.Text > "" Then
+            Dim sw As New System.IO.StreamWriter(lblString)
+
+            For Each sLine As String In rtbDiaryEntry.Lines
+                sw.WriteLine(sLine)
+            Next
+
+            sw.Close()
+        End If
 
         Dim tbxString As String
 
@@ -36,8 +57,9 @@ Public Class MainForm
 
         End If
         rtbDiaryEntry.LoadFile(lblString, RichTextBoxStreamType.PlainText)
+        lblDateText.Text = calMonth.SelectionRange.Start.DayOfWeek.ToString & ", " & calMonth.SelectionRange.Start.ToLongDateString
+        tvbRoot.Update()
     End Sub
-
 
 
     Private Sub AddCustomFolderRootNode(folderpath As String)
@@ -63,18 +85,6 @@ Public Class MainForm
 
     End Sub
 
-    Private Sub btnLoadFolder_Click(sender As Object, e As EventArgs) Handles btnLoadFolder.Click
-        If (fbDialog.ShowDialog() = DialogResult.OK) Then
-            folderpath = fbDialog.SelectedPath
-
-            AddCustomFolderRootNode(folderpath)
-
-        End If
-        ' lblDate.Text = tvbRoot.SelectedNode.Text
-
-
-    End Sub
-
     Private Sub AddChildNodes(tn As TreeNode, DirPath As String)
         Dim DirInfo As New DirectoryInfo(DirPath) 'Create a new DirectoryInfo class for the directory
 
@@ -88,17 +98,6 @@ Public Class MainForm
                     Dim FolderNode As New TreeNode(di.Name) 'ceate a new TreeNode for the folder
                     With FolderNode
                         .Tag = di.FullName 'add the full folder path to the Tag property
-
-                        'If the ImageList contains an ImageKey for this folder path, we want to use the full path for the ImageKey of this node
-                        If tvbImgList.Images.Keys.Contains(di.FullName) Then
-                            .ImageKey = di.FullName
-                            .SelectedImageKey = di.FullName
-
-                        Else 'if the ImageList does not contain this folder path it would mean it is not a Special Folder, so we want to use the standard Folder image
-                            .ImageKey = "Folder"
-                            .SelectedImageKey = "Folder"
-                        End If
-
                         .Nodes.Add("*Empty*") 'add an empty node to this child node so it can be expanded in the TreeView
 
                     End With
@@ -128,8 +127,6 @@ Public Class MainForm
     End Sub
 
     Private Sub TvbRoot_BeforeExpand(sender As Object, e As TreeViewCancelEventArgs) Handles tvbRoot.BeforeExpand
-        'making use of LINQ we can get a boolean value of True/False that we can use to determine if the node is a drive and is ready to be accessed.
-        'CD and DVD-ROMs will throw an exception if you try accessing anything other than their name if there is not a disc in the drive.
         Dim DrvIsReady As Boolean = (From d As DriveInfo In DriveInfo.GetDrives Where d.Name = e.Node.ImageKey Select d.IsReady).FirstOrDefault
 
         'if the node is not the Desktop node and does not contain a full folder path, or if it is a drive that is ready, or if the directory path
@@ -163,6 +160,16 @@ Public Class MainForm
     Private Sub TvbRoot_NodeMouseClick(sender As Object, e As TreeNodeMouseClickEventArgs) Handles tvbRoot.NodeMouseClick
         'Make sure it is the left mouse button that was double clicked and that the node is a File node.
         If e.Button = MouseButtons.Left AndAlso File.Exists(e.Node.Tag.ToString) Then
+            If lblDate.Text > "" Then
+                Dim sw As New System.IO.StreamWriter(lblString)
+
+                For Each sLine As String In rtbDiaryEntry.Lines
+                    sw.WriteLine(sLine)
+                Next
+
+                sw.Close()
+            End If
+
 
             lblString = e.Node.Tag.ToString
             lblDate.Text = e.Node.Tag.ToString
@@ -172,7 +179,35 @@ Public Class MainForm
         End If
     End Sub
 
-    Private Sub BtnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
+    Private Sub ReadData()
+        Dim tbxString As String
+
+        tbxString = tbxDate.Text
+        lblString = Replace(tbxString, "/", "\")
+        lblDate.Text = folderpath & "\" & calMonth.SelectionRange.Start.Year & "\" & calMonth.SelectionRange.Start.Month & "\" & calMonth.SelectionRange.Start.Day
+        lblString = lblDate.Text & ".txt"
+        System.IO.Directory.CreateDirectory(folderpath & "\" & calMonth.SelectionRange.Start.Year & "\" & calMonth.SelectionRange.Start.Month)
+        tbxDate.Text = calMonth.SelectionRange.Start.Day
+
+        If Not File.Exists(lblDate.Text & ".txt") Then
+            File.Create(lblDate.Text & ".txt").Close()
+
+        End If
+        rtbDiaryEntry.LoadFile(lblString, RichTextBoxStreamType.PlainText)
+        tvbRoot.Update()
+    End Sub
+
+    Private Sub ChangeFolderToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ChangeFolderToolStripMenuItem.Click
+        If (fbDialog.ShowDialog() = DialogResult.OK) Then
+            folderpath = fbDialog.SelectedPath
+
+            AddCustomFolderRootNode(folderpath)
+
+        End If
+        ' lblDate.Text = tvbRoot.SelectedNode.Text
+    End Sub
+
+    Private Sub SaveToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SaveToolStripMenuItem.Click
         Dim sw As New System.IO.StreamWriter(lblString)
 
         For Each sLine As String In rtbDiaryEntry.Lines
@@ -181,5 +216,12 @@ Public Class MainForm
 
         sw.Close()
         'rtbDiaryEntry.SaveFile(lblString, RichTextBoxStreamType.RichText)
+    End Sub
+
+    Private Sub RtbDiaryEntry_TextChanged(sender As Object, e As EventArgs) Handles rtbDiaryEntry.TextChanged
+        Static rex As New System.Text.RegularExpressions.Regex("\b", System.Text.RegularExpressions.RegexOptions.Compiled Or System.Text.RegularExpressions.RegexOptions.Multiline)
+
+        lblWordCount.Text = "Words: " & (rex.Matches(rtbDiaryEntry.Text).Count / 2).ToString()
+        lblCharCount.Text = "Characters: " & rtbDiaryEntry.TextLength
     End Sub
 End Class
