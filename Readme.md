@@ -25,7 +25,7 @@ When the application starts up, you must select the root folder of your diary. O
 * Fixed bug where date at top didn't change when selecting through TreeView
 * Fixed bug where a new line was added each time it wrote the file
 
-### 10/08/2019
+### 15/08/2019
 * Root of Diary selection saved for next open
 * Added word and character count
 * Removed buttons and made a menustrip
