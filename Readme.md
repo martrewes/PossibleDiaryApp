@@ -17,6 +17,15 @@ When the application starts up, you must select the root folder of your diary. O
 * Encription (hopefully)
 
 ## Changelog
+
+### 20/08/2019
+* Change months and days to always use 2 digits, so they can be sorted correctly in file manager
+* If a date has nothing written on it, it will no longer create a blank file (clears up directories)
+* Cleaner code, added comments, made more modular
+* Fixed bug where date at top didn't change when selecting through TreeView
+* Fixed bug where a new line was added each time it wrote the file
+
+### 10/08/2019
 * Root of Diary selection saved for next open
 * Added word and character count
 * Removed buttons and made a menustrip
