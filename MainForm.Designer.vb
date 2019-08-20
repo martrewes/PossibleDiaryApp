@@ -35,8 +35,8 @@ Partial Class MainForm
         Me.ChangeFolderToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SaveToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
-        Me.lblWordCount = New System.Windows.Forms.ToolStripStatusLabel()
         Me.lblCharCount = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.lblWordCount = New System.Windows.Forms.ToolStripStatusLabel()
         Me.lblDateText = New System.Windows.Forms.Label()
         Me.MenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
@@ -60,7 +60,7 @@ Partial Class MainForm
         'lblDate
         '
         Me.lblDate.AutoSize = True
-        Me.lblDate.Location = New System.Drawing.Point(233, 425)
+        Me.lblDate.Location = New System.Drawing.Point(438, 8)
         Me.lblDate.Name = "lblDate"
         Me.lblDate.Size = New System.Drawing.Size(0, 13)
         Me.lblDate.TabIndex = 3
@@ -127,19 +127,19 @@ Partial Class MainForm
         Me.StatusStrip1.TabIndex = 10
         Me.StatusStrip1.Text = "StatusStrip"
         '
-        'lblWordCount
-        '
-        Me.lblWordCount.Name = "lblWordCount"
-        Me.lblWordCount.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.lblWordCount.Size = New System.Drawing.Size(44, 17)
-        Me.lblWordCount.Text = "Words:"
-        '
         'lblCharCount
         '
         Me.lblCharCount.Name = "lblCharCount"
         Me.lblCharCount.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.lblCharCount.Size = New System.Drawing.Size(69, 17)
         Me.lblCharCount.Text = "Characters: "
+        '
+        'lblWordCount
+        '
+        Me.lblWordCount.Name = "lblWordCount"
+        Me.lblWordCount.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.lblWordCount.Size = New System.Drawing.Size(44, 17)
+        Me.lblWordCount.Text = "Words:"
         '
         'lblDateText
         '

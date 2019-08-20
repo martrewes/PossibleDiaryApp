@@ -1,0 +1,12 @@
+D:\Documents\PossibleDiaryApp\bin\Debug\PossibleDiary.exe.config
+D:\Documents\PossibleDiaryApp\bin\Debug\PossibleDiary.exe
+D:\Documents\PossibleDiaryApp\bin\Debug\PossibleDiary.pdb
+D:\Documents\PossibleDiaryApp\bin\Debug\PossibleDiary.xml
+D:\Documents\PossibleDiaryApp\obj\Debug\PossibleDiary.vbprojAssemblyReference.cache
+D:\Documents\PossibleDiaryApp\obj\Debug\PossibleDiary.MainForm.resources
+D:\Documents\PossibleDiaryApp\obj\Debug\PossibleDiary.Resources.resources
+D:\Documents\PossibleDiaryApp\obj\Debug\PossibleDiary.vbproj.GenerateResource.cache
+D:\Documents\PossibleDiaryApp\obj\Debug\PossibleDiary.vbproj.CoreCompileInputs.cache
+D:\Documents\PossibleDiaryApp\obj\Debug\PossibleDiary.exe
+D:\Documents\PossibleDiaryApp\obj\Debug\PossibleDiary.xml
+D:\Documents\PossibleDiaryApp\obj\Debug\PossibleDiary.pdb

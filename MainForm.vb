@@ -1,80 +1,136 @@
 ﻿Imports System.IO
 Public Class MainForm
+    'Declare the global variables
     Dim folderpath As String
     Dim lblString As String
     Private Sub FormLoad() Handles Me.Load
 
+        'Checking if used before
         If My.Settings.RootPath = "" Then
 
             If (fbDialog.ShowDialog() = DialogResult.OK) Then
                 folderpath = fbDialog.SelectedPath
             Else
                 MessageBox.Show("You must select a folder")
-
+                Me.Close()
             End If
         Else folderpath = My.Settings.RootPath
         End If
         AddCustomFolderRootNode(folderpath)
         ReadData()
-        tvbRoot.BeginUpdate()
-        tvbRoot.EndUpdate()
         My.Settings.RootPath = folderpath
+
         lblDateText.Text = calMonth.SelectionRange.Start.DayOfWeek.ToString & ", " & calMonth.SelectionRange.Start.ToLongDateString
 
 
 
-    End Sub
-
-    Private Sub calMonth_Click(sender As Object, e As EventArgs) Handles calMonth.MouseClick
-        If calMonth.Enabled = False Then
-            MsgBox("Please select a folder first")
-        End If
     End Sub
 
     Private Sub MonthCalendar1_DateChanged(sender As Object, e As DateRangeEventArgs) Handles calMonth.DateChanged
 
-        If lblDate.Text > "" Then
+        WriteData() 'write changes first (if any) then read from next date
+        ReadData()
+        lblDateText.Text = calMonth.SelectionRange.Start.DayOfWeek.ToString & ", " & calMonth.SelectionRange.Start.ToLongDateString
+
+    End Sub
+
+    Private Sub TvbRoot_NodeMouseClick(sender As Object, e As TreeNodeMouseClickEventArgs) Handles tvbRoot.NodeMouseClick
+        'Make sure it is the left mouse button that was clicked and that the node is a File node.
+        If e.Button = MouseButtons.Left AndAlso File.Exists(e.Node.Tag.ToString) Then
+
+            WriteData()
+
+            lblString = e.Node.Tag.ToString
+
+            'Hacky code to get the date from the filename in the TreeVeiw
+            Dim strFileName As String
+            Dim strFileDate As Date
+
+            'Converting the string to a DateTime format To Then convert To readable Date
+            strFileName = lblString.Replace(folderpath & "\", "")
+            strFileName = strFileName.Replace(".txt", "")
+            strFileName = strFileName.Replace("\", "-")
+            strFileDate = Date.ParseExact(strFileName, "yyyy-MM-dd", Nothing)
+            lblDateText.Text = strFileDate.DayOfWeek.ToString & ", " & strFileDate.ToLongDateString
+
+            rtbDiaryEntry.LoadFile(e.Node.Tag.ToString, RichTextBoxStreamType.PlainText)
+            rtbDiaryEntry.Text = rtbDiaryEntry.Text.Remove(rtbDiaryEntry.TextLength - 1)
+
+        End If
+    End Sub
+
+    Private Sub ReadData()
+
+        lblString = folderpath & "\" & calMonth.SelectionRange.Start.Year & "\" & calMonth.SelectionRange.Start.Month.ToString("D2") & "\" & calMonth.SelectionRange.Start.Day.ToString("D2") & ".txt"
+
+        If File.Exists(lblString) Then
+            rtbDiaryEntry.LoadFile(lblString, RichTextBoxStreamType.PlainText)
+            rtbDiaryEntry.Text = rtbDiaryEntry.Text.Remove(rtbDiaryEntry.TextLength - 1) 'stops endless streams of new lines being added each time date/file is changed
+        End If
+
+        tvbRoot.Update()
+
+    End Sub
+
+    Private Sub WriteData()
+
+        If rtbDiaryEntry.Text = "" Then
+
+        Else
+            Directory.CreateDirectory(folderpath & "\" & calMonth.SelectionRange.Start.Year & "\" & calMonth.SelectionRange.Start.Month.ToString("D2"))
+
             Dim sw As New System.IO.StreamWriter(lblString)
+
+            If Not File.Exists(lblDate.Text & ".txt") Then
+                File.Create(lblDate.Text & ".txt").Close()
+
+            End If
 
             For Each sLine As String In rtbDiaryEntry.Lines
                 sw.WriteLine(sLine)
             Next
-
             sw.Close()
+            rtbDiaryEntry.Text = ""
         End If
 
-        Dim tbxString As String
-
-        tbxString = tbxDate.Text
-        lblString = Replace(tbxString, "/", "\")
-        lblDate.Text = folderpath & "\" & calMonth.SelectionRange.Start.Year & "\" & calMonth.SelectionRange.Start.Month & "\" & calMonth.SelectionRange.Start.Day
-        lblString = lblDate.Text & ".txt"
-        System.IO.Directory.CreateDirectory(folderpath & "\" & calMonth.SelectionRange.Start.Year & "\" & calMonth.SelectionRange.Start.Month)
-        tbxDate.Text = calMonth.SelectionRange.Start.Day
-
-        If Not File.Exists(lblDate.Text & ".txt") Then
-            File.Create(lblDate.Text & ".txt").Close()
-
-        End If
-        rtbDiaryEntry.LoadFile(lblString, RichTextBoxStreamType.PlainText)
-        lblDateText.Text = calMonth.SelectionRange.Start.DayOfWeek.ToString & ", " & calMonth.SelectionRange.Start.ToLongDateString
-        tvbRoot.Update()
     End Sub
 
+    Private Sub ChangeFolderToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ChangeFolderToolStripMenuItem.Click
+        If (fbDialog.ShowDialog() = DialogResult.OK) Then
+            folderpath = fbDialog.SelectedPath
+            My.Settings.RootPath = folderpath
+            AddCustomFolderRootNode(folderpath)
+        End If
 
-    Private Sub AddCustomFolderRootNode(folderpath As String)
+    End Sub
+
+    Private Sub SaveToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SaveToolStripMenuItem.Click
+        Dim sw As New System.IO.StreamWriter(lblString) 'Just an option to save manually
+        For Each sLine As String In rtbDiaryEntry.Lines
+            sw.WriteLine(sLine)
+        Next
+        sw.Close()
+        'rtbDiaryEntry.SaveFile(lblString, RichTextBoxStreamType.RichText)
+    End Sub
+
+    Private Sub RtbDiaryEntry_TextChanged(sender As Object, e As EventArgs) Handles rtbDiaryEntry.TextChanged
+        Static rex As New System.Text.RegularExpressions.Regex("\b", System.Text.RegularExpressions.RegexOptions.Compiled Or System.Text.RegularExpressions.RegexOptions.Multiline)
+        'Counts words and characters as the user types
+        lblWordCount.Text = "Words: " & (rex.Matches(rtbDiaryEntry.Text).Count / 2).ToString()
+        lblCharCount.Text = "Characters: " & rtbDiaryEntry.TextLength
+    End Sub
+
+    Private Sub AddCustomFolderRootNode(folderpath As String) 'This code is taken from a tutorial on how to create directories into a TreeView, stripped of anything irrelevent
         tvbRoot.Nodes.Clear()
         If Directory.Exists(folderpath) Then 'check to make sure the folder exists before adding a node for it
 
             Dim FolderName As String = New DirectoryInfo(folderpath).Name 'get just the folder's name from the specified folder path.
-
-
             Dim rootNode As New TreeNode(FolderName) 'create a new TreeNode using the folder's name for the node's Text property.
 
             With rootNode
                 .Tag = folderpath 'set the root node's Tag property to the folder's full path. This is used to get the full path of the folder that this node represents.
 
-                'if the specified folder contains any sub files/folders, then we need to add an empty child node to this root node. This will add the [+] sign on the root node which will allow it to be expanded.
+                'if the specified folder contains any sub files/folders, add an empty child node to this root node. This will add the [+] sign on the root node which will allow it to be expanded.
                 If Directory.GetDirectories(folderpath).Count > 0 OrElse Directory.GetFiles(folderpath).Count > 0 Then
                     .Nodes.Add("Empty")
                 End If
@@ -85,7 +141,7 @@ Public Class MainForm
 
     End Sub
 
-    Private Sub AddChildNodes(tn As TreeNode, DirPath As String)
+    Private Sub AddChildNodes(tn As TreeNode, DirPath As String) 'This code is taken from a tutorial on how to create directories into a TreeView, stripped of anything irrelevent
         Dim DirInfo As New DirectoryInfo(DirPath) 'Create a new DirectoryInfo class for the directory
 
         'We will place the code that iterates through the sub directories and files in a Try Catch because we might run into a folder or file
@@ -126,7 +182,7 @@ Public Class MainForm
         End Try
     End Sub
 
-    Private Sub TvbRoot_BeforeExpand(sender As Object, e As TreeViewCancelEventArgs) Handles tvbRoot.BeforeExpand
+    Private Sub TvbRoot_BeforeExpand(sender As Object, e As TreeViewCancelEventArgs) Handles tvbRoot.BeforeExpand 'This code is taken from a tutorial on how to create directories into a TreeView, stripped of anything irrelevent
         Dim DrvIsReady As Boolean = (From d As DriveInfo In DriveInfo.GetDrives Where d.Name = e.Node.ImageKey Select d.IsReady).FirstOrDefault
 
         'if the node is not the Desktop node and does not contain a full folder path, or if it is a drive that is ready, or if the directory path
@@ -157,71 +213,4 @@ Public Class MainForm
         e.Node.Nodes.Add("Empty")
     End Sub
 
-    Private Sub TvbRoot_NodeMouseClick(sender As Object, e As TreeNodeMouseClickEventArgs) Handles tvbRoot.NodeMouseClick
-        'Make sure it is the left mouse button that was double clicked and that the node is a File node.
-        If e.Button = MouseButtons.Left AndAlso File.Exists(e.Node.Tag.ToString) Then
-            If lblDate.Text > "" Then
-                Dim sw As New System.IO.StreamWriter(lblString)
-
-                For Each sLine As String In rtbDiaryEntry.Lines
-                    sw.WriteLine(sLine)
-                Next
-
-                sw.Close()
-            End If
-
-
-            lblString = e.Node.Tag.ToString
-            lblDate.Text = e.Node.Tag.ToString
-            rtbDiaryEntry.LoadFile(e.Node.Tag.ToString, RichTextBoxStreamType.PlainText)
-
-
-        End If
-    End Sub
-
-    Private Sub ReadData()
-        Dim tbxString As String
-
-        tbxString = tbxDate.Text
-        lblString = Replace(tbxString, "/", "\")
-        lblDate.Text = folderpath & "\" & calMonth.SelectionRange.Start.Year & "\" & calMonth.SelectionRange.Start.Month & "\" & calMonth.SelectionRange.Start.Day
-        lblString = lblDate.Text & ".txt"
-        System.IO.Directory.CreateDirectory(folderpath & "\" & calMonth.SelectionRange.Start.Year & "\" & calMonth.SelectionRange.Start.Month)
-        tbxDate.Text = calMonth.SelectionRange.Start.Day
-
-        If Not File.Exists(lblDate.Text & ".txt") Then
-            File.Create(lblDate.Text & ".txt").Close()
-
-        End If
-        rtbDiaryEntry.LoadFile(lblString, RichTextBoxStreamType.PlainText)
-        tvbRoot.Update()
-    End Sub
-
-    Private Sub ChangeFolderToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ChangeFolderToolStripMenuItem.Click
-        If (fbDialog.ShowDialog() = DialogResult.OK) Then
-            folderpath = fbDialog.SelectedPath
-
-            AddCustomFolderRootNode(folderpath)
-
-        End If
-        ' lblDate.Text = tvbRoot.SelectedNode.Text
-    End Sub
-
-    Private Sub SaveToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SaveToolStripMenuItem.Click
-        Dim sw As New System.IO.StreamWriter(lblString)
-
-        For Each sLine As String In rtbDiaryEntry.Lines
-            sw.WriteLine(sLine)
-        Next
-
-        sw.Close()
-        'rtbDiaryEntry.SaveFile(lblString, RichTextBoxStreamType.RichText)
-    End Sub
-
-    Private Sub RtbDiaryEntry_TextChanged(sender As Object, e As EventArgs) Handles rtbDiaryEntry.TextChanged
-        Static rex As New System.Text.RegularExpressions.Regex("\b", System.Text.RegularExpressions.RegexOptions.Compiled Or System.Text.RegularExpressions.RegexOptions.Multiline)
-
-        lblWordCount.Text = "Words: " & (rex.Matches(rtbDiaryEntry.Text).Count / 2).ToString()
-        lblCharCount.Text = "Characters: " & rtbDiaryEntry.TextLength
-    End Sub
 End Class
