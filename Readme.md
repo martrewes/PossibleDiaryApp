@@ -1,6 +1,6 @@
 # <img src="icon.png" width="70"> A Possible Diary Application for Windows (so far)
 This is just an experiment to see if I can create an application that functions as a Diary. It is by no means fully featured.
-Created in VB.Net. Requires .Net Framework 4.0 or above
+Created in VB.Net. Requires .Net Framework 4.6 or above
 
 ## Usage
 When the application starts up, you must select the root folder of your diary. Once selected, you will now be able to add entries by selecting a date on the calendar. This will create a simple .txt file organised in a RootFolder\\Year\\Month\\Day.txt hierarchy that can be seen in the TreeView box. You can also take these files anywhere else as they are plain text.
@@ -13,10 +13,13 @@ When the application starts up, you must select the root folder of your diary. O
 * Works on Linux under Wine (Tested Wine 4.0 + Mono)
 
 ## Planned Features
-* Export to .zip file
 * Encryption (hopefully)
 
 ## Changelog
+
+### 22/08/2019
+* Export to Zip file added
+* Rebased on .NET 4.6
 
 ### 20/08/2019
 * Change months and days to always use 2 digits, so they can be sorted correctly in file manager
