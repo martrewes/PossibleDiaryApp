@@ -14,7 +14,7 @@ When the application starts up, you must select the root folder of your diary. O
 
 ## Planned Features
 * Export to .zip file
-* Encription (hopefully)
+* Encryption (hopefully)
 
 ## Changelog
 
