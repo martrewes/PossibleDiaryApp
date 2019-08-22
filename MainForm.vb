@@ -1,4 +1,5 @@
 ﻿Imports System.IO
+Imports System.IO.Compression
 Public Class MainForm
     'Declare the global variables
     Dim folderpath As String
@@ -213,4 +214,12 @@ Public Class MainForm
         e.Node.Nodes.Add("Empty")
     End Sub
 
+    Private Sub ExportToZipToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExportToZipToolStripMenuItem.Click
+        sfDialog.Filter = "ZIP Files (*.zip*)|*.zip"
+        If sfDialog.ShowDialog = Windows.Forms.DialogResult.OK _
+       Then
+            ZipFile.CreateFromDirectory(folderpath, sfDialog.FileName)
+        End If
+
+    End Sub
 End Class

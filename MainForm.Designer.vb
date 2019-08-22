@@ -38,6 +38,8 @@ Partial Class MainForm
         Me.lblCharCount = New System.Windows.Forms.ToolStripStatusLabel()
         Me.lblWordCount = New System.Windows.Forms.ToolStripStatusLabel()
         Me.lblDateText = New System.Windows.Forms.Label()
+        Me.ExportToZipToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.sfDialog = New System.Windows.Forms.SaveFileDialog()
         Me.MenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -98,7 +100,7 @@ Partial Class MainForm
         '
         'MenuStrip1
         '
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ChangeFolderToolStripMenuItem, Me.SaveToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ChangeFolderToolStripMenuItem, Me.SaveToolStripMenuItem, Me.ExportToZipToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Size = New System.Drawing.Size(800, 24)
@@ -145,11 +147,22 @@ Partial Class MainForm
         '
         Me.lblDateText.AutoSize = True
         Me.lblDateText.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblDateText.Location = New System.Drawing.Point(232, 3)
+        Me.lblDateText.Location = New System.Drawing.Point(239, 3)
         Me.lblDateText.Name = "lblDateText"
         Me.lblDateText.Size = New System.Drawing.Size(158, 20)
         Me.lblDateText.TabIndex = 11
         Me.lblDateText.Text = "Date in Long Form"
+        '
+        'ExportToZipToolStripMenuItem
+        '
+        Me.ExportToZipToolStripMenuItem.Name = "ExportToZipToolStripMenuItem"
+        Me.ExportToZipToolStripMenuItem.Size = New System.Drawing.Size(94, 20)
+        Me.ExportToZipToolStripMenuItem.Text = "Export to zip..."
+        '
+        'sfDialog
+        '
+        Me.sfDialog.DefaultExt = "zip"
+        Me.sfDialog.Filter = "Zip files .zip | All files"
         '
         'MainForm
         '
@@ -191,4 +204,6 @@ Partial Class MainForm
     Friend WithEvents lblCharCount As ToolStripStatusLabel
     Friend WithEvents lblWordCount As ToolStripStatusLabel
     Friend WithEvents lblDateText As Label
+    Friend WithEvents ExportToZipToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents sfDialog As SaveFileDialog
 End Class
