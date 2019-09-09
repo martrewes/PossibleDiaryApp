@@ -10,3 +10,15 @@ D:\Documents\PossibleDiaryApp\obj\Debug\PossibleDiary.vbproj.CoreCompileInputs.c
 D:\Documents\PossibleDiaryApp\obj\Debug\PossibleDiary.exe
 D:\Documents\PossibleDiaryApp\obj\Debug\PossibleDiary.xml
 D:\Documents\PossibleDiaryApp\obj\Debug\PossibleDiary.pdb
+D:\Documents\Visual Studio 2019\Projects\DiaryApp\bin\Debug\PossibleDiary.exe.config
+D:\Documents\Visual Studio 2019\Projects\DiaryApp\bin\Debug\PossibleDiary.exe
+D:\Documents\Visual Studio 2019\Projects\DiaryApp\bin\Debug\PossibleDiary.pdb
+D:\Documents\Visual Studio 2019\Projects\DiaryApp\bin\Debug\PossibleDiary.xml
+D:\Documents\Visual Studio 2019\Projects\DiaryApp\obj\Debug\PossibleDiary.vbprojAssemblyReference.cache
+D:\Documents\Visual Studio 2019\Projects\DiaryApp\obj\Debug\PossibleDiary.MainForm.resources
+D:\Documents\Visual Studio 2019\Projects\DiaryApp\obj\Debug\PossibleDiary.Resources.resources
+D:\Documents\Visual Studio 2019\Projects\DiaryApp\obj\Debug\PossibleDiary.vbproj.GenerateResource.cache
+D:\Documents\Visual Studio 2019\Projects\DiaryApp\obj\Debug\PossibleDiary.vbproj.CoreCompileInputs.cache
+D:\Documents\Visual Studio 2019\Projects\DiaryApp\obj\Debug\PossibleDiary.exe
+D:\Documents\Visual Studio 2019\Projects\DiaryApp\obj\Debug\PossibleDiary.xml
+D:\Documents\Visual Studio 2019\Projects\DiaryApp\obj\Debug\PossibleDiary.pdb

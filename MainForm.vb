@@ -12,12 +12,13 @@ Public Class MainForm
             If (fbDialog.ShowDialog() = DialogResult.OK) Then
                 folderpath = fbDialog.SelectedPath
             Else
-                MessageBox.Show("You must select a folder")
+                MessageBox.Show("You must select a folder to continue")
                 Me.Close()
             End If
         Else folderpath = My.Settings.RootPath
         End If
         AddCustomFolderRootNode(folderpath)
+        
         ReadData()
         My.Settings.RootPath = folderpath
 
@@ -31,6 +32,8 @@ Public Class MainForm
 
         WriteData() 'write changes first (if any) then read from next date
         ReadData()
+        AddCustomFolderRootNode(folderpath)
+        tvbRoot.ExpandAll()
         lblDateText.Text = calMonth.SelectionRange.Start.DayOfWeek.ToString & ", " & calMonth.SelectionRange.Start.ToLongDateString
 
     End Sub
@@ -139,6 +142,7 @@ Public Class MainForm
 
             tvbRoot.Nodes.Add(rootNode) 'add this root node to the treeview
         End If
+       
 
     End Sub
 
