@@ -116,6 +116,7 @@ Partial Class MainForm
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ChangeFolderToolStripMenuItem, Me.SaveToolStripMenuItem, Me.ExportToZipToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
+        Me.MenuStrip1.Padding = New System.Windows.Forms.Padding(3, 3, 0, 3)
         Me.MenuStrip1.Size = New System.Drawing.Size(360, 36)
         Me.MenuStrip1.TabIndex = 9
         Me.MenuStrip1.Text = "MenuStrip1"
@@ -199,7 +200,6 @@ Partial Class MainForm
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
-
         Me.Name = "MainForm"
         Me.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.Text = "Personal Diary"
