@@ -1,4 +1,4 @@
-# <img src="icon.png" width="70"> A Possible Diary Application for Windows (so far)
+# <img src="icon.png" width="70"> A Possible Diary Application for Windows (Linux through Wine)
 This is just an experiment to see if I can create an application that functions as a Diary. It is by no means fully featured.
 Created in VB.Net. Requires .Net Framework 4.6 or above
 
