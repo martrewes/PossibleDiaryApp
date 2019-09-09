@@ -34,11 +34,11 @@ Partial Class MainForm
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.ChangeFolderToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SaveToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ExportToZipToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.lblCharCount = New System.Windows.Forms.ToolStripStatusLabel()
         Me.lblWordCount = New System.Windows.Forms.ToolStripStatusLabel()
         Me.lblDateText = New System.Windows.Forms.Label()
-        Me.ExportToZipToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.sfDialog = New System.Windows.Forms.SaveFileDialog()
         Me.MenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
@@ -46,33 +46,39 @@ Partial Class MainForm
         '
         'calMonth
         '
-        Me.calMonth.Location = New System.Drawing.Point(0, 24)
+        Me.calMonth.Location = New System.Drawing.Point(0, 37)
+        Me.calMonth.Margin = New System.Windows.Forms.Padding(14)
         Me.calMonth.MaxSelectionCount = 1
         Me.calMonth.Name = "calMonth"
-        Me.calMonth.TabIndex = 1
+        Me.calMonth.TabIndex = 0
         '
         'tbxDate
         '
-        Me.tbxDate.Location = New System.Drawing.Point(688, 18)
+        Me.tbxDate.Location = New System.Drawing.Point(1032, 28)
+        Me.tbxDate.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.tbxDate.Name = "tbxDate"
-        Me.tbxDate.Size = New System.Drawing.Size(100, 20)
+        Me.tbxDate.Size = New System.Drawing.Size(148, 26)
         Me.tbxDate.TabIndex = 2
         Me.tbxDate.Visible = False
         '
         'lblDate
         '
         Me.lblDate.AutoSize = True
-        Me.lblDate.Location = New System.Drawing.Point(438, 8)
+        Me.lblDate.Location = New System.Drawing.Point(657, 12)
+        Me.lblDate.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblDate.Name = "lblDate"
-        Me.lblDate.Size = New System.Drawing.Size(0, 13)
+        Me.lblDate.Size = New System.Drawing.Size(0, 20)
         Me.lblDate.TabIndex = 3
         Me.lblDate.Visible = False
         '
         'tvbRoot
         '
-        Me.tvbRoot.Location = New System.Drawing.Point(0, 195)
+        Me.tvbRoot.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.tvbRoot.Location = New System.Drawing.Point(0, 300)
+        Me.tvbRoot.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.tvbRoot.Name = "tvbRoot"
-        Me.tvbRoot.Size = New System.Drawing.Size(227, 231)
+        Me.tvbRoot.Size = New System.Drawing.Size(312, 353)
         Me.tvbRoot.TabIndex = 4
         '
         'tvbImgList
@@ -92,40 +98,55 @@ Partial Class MainForm
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.rtbDiaryEntry.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.rtbDiaryEntry.Font = New System.Drawing.Font("Consolas", 11.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.rtbDiaryEntry.Location = New System.Drawing.Point(229, 26)
+        Me.rtbDiaryEntry.Location = New System.Drawing.Point(320, 40)
+        Me.rtbDiaryEntry.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.rtbDiaryEntry.Name = "rtbDiaryEntry"
-        Me.rtbDiaryEntry.Size = New System.Drawing.Size(571, 400)
+        Me.rtbDiaryEntry.Size = New System.Drawing.Size(854, 616)
         Me.rtbDiaryEntry.TabIndex = 5
         Me.rtbDiaryEntry.Text = ""
         '
         'MenuStrip1
         '
+        Me.MenuStrip1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.MenuStrip1.Dock = System.Windows.Forms.DockStyle.None
+        Me.MenuStrip1.GripMargin = New System.Windows.Forms.Padding(2, 2, 0, 2)
+        Me.MenuStrip1.ImageScalingSize = New System.Drawing.Size(24, 24)
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ChangeFolderToolStripMenuItem, Me.SaveToolStripMenuItem, Me.ExportToZipToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(800, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(360, 36)
         Me.MenuStrip1.TabIndex = 9
         Me.MenuStrip1.Text = "MenuStrip1"
         '
         'ChangeFolderToolStripMenuItem
         '
         Me.ChangeFolderToolStripMenuItem.Name = "ChangeFolderToolStripMenuItem"
-        Me.ChangeFolderToolStripMenuItem.Size = New System.Drawing.Size(96, 20)
+        Me.ChangeFolderToolStripMenuItem.Size = New System.Drawing.Size(143, 30)
         Me.ChangeFolderToolStripMenuItem.Text = "Change Folder"
         '
         'SaveToolStripMenuItem
         '
         Me.SaveToolStripMenuItem.Name = "SaveToolStripMenuItem"
-        Me.SaveToolStripMenuItem.Size = New System.Drawing.Size(43, 20)
+        Me.SaveToolStripMenuItem.Size = New System.Drawing.Size(65, 30)
         Me.SaveToolStripMenuItem.Text = "Save"
+        '
+        'ExportToZipToolStripMenuItem
+        '
+        Me.ExportToZipToolStripMenuItem.Name = "ExportToZipToolStripMenuItem"
+        Me.ExportToZipToolStripMenuItem.Size = New System.Drawing.Size(141, 30)
+        Me.ExportToZipToolStripMenuItem.Text = "Export to zip..."
         '
         'StatusStrip1
         '
+        Me.StatusStrip1.ImageScalingSize = New System.Drawing.Size(24, 24)
         Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lblCharCount, Me.lblWordCount})
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 428)
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 660)
         Me.StatusStrip1.Name = "StatusStrip1"
+        Me.StatusStrip1.Padding = New System.Windows.Forms.Padding(21, 0, 2, 0)
         Me.StatusStrip1.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.StatusStrip1.Size = New System.Drawing.Size(800, 22)
+        Me.StatusStrip1.Size = New System.Drawing.Size(1200, 32)
         Me.StatusStrip1.TabIndex = 10
         Me.StatusStrip1.Text = "StatusStrip"
         '
@@ -133,31 +154,29 @@ Partial Class MainForm
         '
         Me.lblCharCount.Name = "lblCharCount"
         Me.lblCharCount.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.lblCharCount.Size = New System.Drawing.Size(69, 17)
+        Me.lblCharCount.Size = New System.Drawing.Size(103, 25)
         Me.lblCharCount.Text = "Characters: "
         '
         'lblWordCount
         '
         Me.lblWordCount.Name = "lblWordCount"
         Me.lblWordCount.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.lblWordCount.Size = New System.Drawing.Size(44, 17)
+        Me.lblWordCount.Size = New System.Drawing.Size(68, 25)
         Me.lblWordCount.Text = "Words:"
         '
         'lblDateText
         '
+        Me.lblDateText.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
+            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.lblDateText.AutoSize = True
         Me.lblDateText.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblDateText.Location = New System.Drawing.Point(239, 3)
+        Me.lblDateText.Location = New System.Drawing.Point(358, 5)
+        Me.lblDateText.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblDateText.Name = "lblDateText"
-        Me.lblDateText.Size = New System.Drawing.Size(158, 20)
+        Me.lblDateText.Size = New System.Drawing.Size(228, 29)
         Me.lblDateText.TabIndex = 11
         Me.lblDateText.Text = "Date in Long Form"
-        '
-        'ExportToZipToolStripMenuItem
-        '
-        Me.ExportToZipToolStripMenuItem.Name = "ExportToZipToolStripMenuItem"
-        Me.ExportToZipToolStripMenuItem.Size = New System.Drawing.Size(94, 20)
-        Me.ExportToZipToolStripMenuItem.Text = "Export to zip..."
         '
         'sfDialog
         '
@@ -166,9 +185,9 @@ Partial Class MainForm
         '
         'MainForm
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 450)
+        Me.ClientSize = New System.Drawing.Size(1200, 692)
         Me.Controls.Add(Me.lblDateText)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.rtbDiaryEntry)
@@ -179,6 +198,8 @@ Partial Class MainForm
         Me.Controls.Add(Me.MenuStrip1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.MenuStrip1
+        Me.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
+
         Me.Name = "MainForm"
         Me.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.Text = "Personal Diary"

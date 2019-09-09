@@ -18,9 +18,13 @@ Public Class MainForm
         Else folderpath = My.Settings.RootPath
         End If
         AddCustomFolderRootNode(folderpath)
-        
+        tvbRoot.ExpandAll()
         ReadData()
         My.Settings.RootPath = folderpath
+        tvbRoot.Width = calMonth.Width
+        rtbDiaryEntry.Location = New Point(tvbRoot.Width + 2, lblDateText.Location.Y + lblDateText.Height + 2)
+        rtbDiaryEntry.Width = ClientSize.Width - (tvbRoot.Width + 2)
+        rtbDiaryEntry.Height = ClientSize.Height - (lblDateText.Height + StatusStrip1.Height)
 
         lblDateText.Text = calMonth.SelectionRange.Start.DayOfWeek.ToString & ", " & calMonth.SelectionRange.Start.ToLongDateString
 
