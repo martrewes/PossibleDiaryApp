@@ -23,6 +23,10 @@ When the application starts up, you must select the root folder of your diary. O
 ## Changelog
 
 ### 10/09/2019
+* Changed font selection to standard ComboBox (instead of a SatusStrip one) for cleaner look
+* Loaded selected font on start
+
+### 10/09/2019 
 * Added font selector dropdown to StatusBar
 * Default font size: 10
 * Default font: Consolas
