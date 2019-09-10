@@ -40,8 +40,11 @@ Partial Class MainForm
         Me.lblWordCount = New System.Windows.Forms.ToolStripStatusLabel()
         Me.lblDateText = New System.Windows.Forms.Label()
         Me.sfDialog = New System.Windows.Forms.SaveFileDialog()
+        Me.TrackBar1 = New System.Windows.Forms.TrackBar()
+        Me.lblFontSize = New System.Windows.Forms.Label()
         Me.MenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
+        CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'calMonth
@@ -117,26 +120,26 @@ Partial Class MainForm
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Padding = New System.Windows.Forms.Padding(3, 3, 0, 3)
-        Me.MenuStrip1.Size = New System.Drawing.Size(360, 36)
+        Me.MenuStrip1.Size = New System.Drawing.Size(354, 35)
         Me.MenuStrip1.TabIndex = 9
         Me.MenuStrip1.Text = "MenuStrip1"
         '
         'ChangeFolderToolStripMenuItem
         '
         Me.ChangeFolderToolStripMenuItem.Name = "ChangeFolderToolStripMenuItem"
-        Me.ChangeFolderToolStripMenuItem.Size = New System.Drawing.Size(143, 30)
+        Me.ChangeFolderToolStripMenuItem.Size = New System.Drawing.Size(143, 29)
         Me.ChangeFolderToolStripMenuItem.Text = "Change Folder"
         '
         'SaveToolStripMenuItem
         '
         Me.SaveToolStripMenuItem.Name = "SaveToolStripMenuItem"
-        Me.SaveToolStripMenuItem.Size = New System.Drawing.Size(65, 30)
+        Me.SaveToolStripMenuItem.Size = New System.Drawing.Size(65, 29)
         Me.SaveToolStripMenuItem.Text = "Save"
         '
         'ExportToZipToolStripMenuItem
         '
         Me.ExportToZipToolStripMenuItem.Name = "ExportToZipToolStripMenuItem"
-        Me.ExportToZipToolStripMenuItem.Size = New System.Drawing.Size(141, 30)
+        Me.ExportToZipToolStripMenuItem.Size = New System.Drawing.Size(141, 29)
         Me.ExportToZipToolStripMenuItem.Text = "Export to zip..."
         '
         'StatusStrip1
@@ -184,11 +187,36 @@ Partial Class MainForm
         Me.sfDialog.DefaultExt = "zip"
         Me.sfDialog.Filter = "Zip files .zip | All files"
         '
+        'TrackBar1
+        '
+        Me.TrackBar1.AutoSize = False
+        Me.TrackBar1.Location = New System.Drawing.Point(214, 663)
+        Me.TrackBar1.Maximum = 32
+        Me.TrackBar1.Minimum = 6
+        Me.TrackBar1.Name = "TrackBar1"
+        Me.TrackBar1.Size = New System.Drawing.Size(104, 28)
+        Me.TrackBar1.SmallChange = 2
+        Me.TrackBar1.TabIndex = 12
+        Me.TrackBar1.TickFrequency = 2
+        Me.TrackBar1.Value = 12
+        '
+        'lblFontSize
+        '
+        Me.lblFontSize.AutoSize = True
+        Me.lblFontSize.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblFontSize.Location = New System.Drawing.Point(95, 663)
+        Me.lblFontSize.Name = "lblFontSize"
+        Me.lblFontSize.Size = New System.Drawing.Size(113, 25)
+        Me.lblFontSize.TabIndex = 13
+        Me.lblFontSize.Text = "Font Size: 12"
+        '
         'MainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1200, 692)
+        Me.Controls.Add(Me.lblFontSize)
+        Me.Controls.Add(Me.TrackBar1)
         Me.Controls.Add(Me.lblDateText)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.rtbDiaryEntry)
@@ -207,6 +235,7 @@ Partial Class MainForm
         Me.MenuStrip1.PerformLayout()
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
+        CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -227,4 +256,6 @@ Partial Class MainForm
     Friend WithEvents lblDateText As Label
     Friend WithEvents ExportToZipToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents sfDialog As SaveFileDialog
+    Friend WithEvents TrackBar1 As TrackBar
+    Friend WithEvents lblFontSize As Label
 End Class

@@ -4,6 +4,7 @@ Public Class MainForm
     'Declare the global variables
     Dim folderpath As String
     Dim lblString As String
+    Dim fontSize As Integer
     Private Sub FormLoad() Handles Me.Load
 
         'Checking if used before
@@ -21,6 +22,8 @@ Public Class MainForm
         tvbRoot.ExpandAll()
         ReadData()
         My.Settings.RootPath = folderpath
+        fontSize = My.Settings.FontSize
+        ChangeFont()
         tvbRoot.Width = calMonth.Width
         rtbDiaryEntry.Location = New Point(tvbRoot.Width + 2, lblDateText.Location.Y + lblDateText.Height + 2)
         rtbDiaryEntry.Width = ClientSize.Width - (tvbRoot.Width + 2)
@@ -146,7 +149,7 @@ Public Class MainForm
 
             tvbRoot.Nodes.Add(rootNode) 'add this root node to the treeview
         End If
-       
+
 
     End Sub
 
@@ -229,5 +232,16 @@ Public Class MainForm
             ZipFile.CreateFromDirectory(folderpath, sfDialog.FileName)
         End If
 
+    End Sub
+
+    Private Sub TrackBar1_Scroll(sender As Object, e As EventArgs) Handles TrackBar1.Scroll
+        fontSize = TrackBar1.Value
+        ChangeFont()
+        My.Settings.FontSize = fontSize
+    End Sub
+
+    Private Sub ChangeFont()
+        lblFontSize.Text = "Font Size: " & fontSize
+        rtbDiaryEntry.Font = New Font("Consolas", fontSize)
     End Sub
 End Class
