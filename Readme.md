@@ -1,4 +1,5 @@
-# <img src="icon.png" width="70"> A Possible Diary Application for Windows (so far)
+# <img src="icon.png" width="70">  A Possible Diary Application for Windows
+
 This is just an experiment to see if I can create an application that functions as a Diary. It is by no means fully featured.
 Created in VB.Net. Requires .Net Framework 4.6 or above
 
@@ -16,6 +17,12 @@ When the application starts up, you must select the root folder of your diary. O
 * Encryption (hopefully)
 
 ## Changelog
+
+### 09/09/2019
+
+* Added automatic refresh of TreeNode so updates on change of day
+* Added HiDPI compatibility (Tested at 150% scale, my default)
+* Anchored entry and TreeView to the bottom of the window so it resizes correctly
 
 ### 22/08/2019
 * Export to Zip file added
