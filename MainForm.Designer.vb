@@ -38,10 +38,13 @@ Partial Class MainForm
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.lblCharCount = New System.Windows.Forms.ToolStripStatusLabel()
         Me.lblWordCount = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.ddbFont = New System.Windows.Forms.ToolStripDropDownButton()
+        Me.tscFont = New System.Windows.Forms.ToolStripComboBox()
         Me.lblDateText = New System.Windows.Forms.Label()
         Me.sfDialog = New System.Windows.Forms.SaveFileDialog()
         Me.TrackBar1 = New System.Windows.Forms.TrackBar()
         Me.lblFontSize = New System.Windows.Forms.Label()
+        Me.ToolStripComboBox1 = New System.Windows.Forms.ToolStripComboBox()
         Me.MenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -145,7 +148,7 @@ Partial Class MainForm
         'StatusStrip1
         '
         Me.StatusStrip1.ImageScalingSize = New System.Drawing.Size(24, 24)
-        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lblCharCount, Me.lblWordCount})
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lblCharCount, Me.lblWordCount, Me.ddbFont})
         Me.StatusStrip1.Location = New System.Drawing.Point(0, 660)
         Me.StatusStrip1.Name = "StatusStrip1"
         Me.StatusStrip1.Padding = New System.Windows.Forms.Padding(21, 0, 2, 0)
@@ -167,6 +170,29 @@ Partial Class MainForm
         Me.lblWordCount.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.lblWordCount.Size = New System.Drawing.Size(68, 25)
         Me.lblWordCount.Text = "Words:"
+        '
+        'ddbFont
+        '
+        Me.ddbFont.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.ddbFont.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tscFont})
+        Me.ddbFont.Image = CType(resources.GetObject("ddbFont.Image"), System.Drawing.Image)
+        Me.ddbFont.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ddbFont.Name = "ddbFont"
+        Me.ddbFont.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.ddbFont.Size = New System.Drawing.Size(131, 29)
+        Me.ddbFont.Text = "Change Font"
+        Me.ddbFont.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.ddbFont.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage
+        Me.ddbFont.ToolTipText = "Change Font"
+        '
+        'tscFont
+        '
+        Me.tscFont.DropDownHeight = 150
+        Me.tscFont.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.tscFont.DropDownWidth = 150
+        Me.tscFont.FlatStyle = System.Windows.Forms.FlatStyle.System
+        Me.tscFont.Name = "tscFont"
+        Me.tscFont.Size = New System.Drawing.Size(240, 33)
         '
         'lblDateText
         '
@@ -190,7 +216,7 @@ Partial Class MainForm
         'TrackBar1
         '
         Me.TrackBar1.AutoSize = False
-        Me.TrackBar1.Location = New System.Drawing.Point(214, 663)
+        Me.TrackBar1.Location = New System.Drawing.Point(156, 663)
         Me.TrackBar1.Maximum = 32
         Me.TrackBar1.Minimum = 6
         Me.TrackBar1.Name = "TrackBar1"
@@ -204,11 +230,17 @@ Partial Class MainForm
         '
         Me.lblFontSize.AutoSize = True
         Me.lblFontSize.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblFontSize.Location = New System.Drawing.Point(95, 663)
+        Me.lblFontSize.Location = New System.Drawing.Point(37, 663)
         Me.lblFontSize.Name = "lblFontSize"
         Me.lblFontSize.Size = New System.Drawing.Size(113, 25)
         Me.lblFontSize.TabIndex = 13
         Me.lblFontSize.Text = "Font Size: 12"
+        '
+        'ToolStripComboBox1
+        '
+        Me.ToolStripComboBox1.Margin = New System.Windows.Forms.Padding(1, 0, 1, 0)
+        Me.ToolStripComboBox1.Name = "ToolStripComboBox1"
+        Me.ToolStripComboBox1.Size = New System.Drawing.Size(121, 33)
         '
         'MainForm
         '
@@ -258,4 +290,7 @@ Partial Class MainForm
     Friend WithEvents sfDialog As SaveFileDialog
     Friend WithEvents TrackBar1 As TrackBar
     Friend WithEvents lblFontSize As Label
+    Friend WithEvents ddbFont As ToolStripDropDownButton
+    Friend WithEvents ToolStripComboBox1 As ToolStripComboBox
+    Friend WithEvents tscFont As ToolStripComboBox
 End Class

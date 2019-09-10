@@ -5,6 +5,7 @@ Public Class MainForm
     Dim folderpath As String
     Dim lblString As String
     Dim fontSize As Integer
+    Dim fontName As String
     Private Sub FormLoad() Handles Me.Load
 
         'Checking if used before
@@ -23,6 +24,8 @@ Public Class MainForm
         ReadData()
         My.Settings.RootPath = folderpath
         fontSize = My.Settings.FontSize
+        fontName = My.Settings.FontName
+        AddFonts()
         ChangeFont()
         tvbRoot.Width = calMonth.Width
         rtbDiaryEntry.Location = New Point(tvbRoot.Width + 2, lblDateText.Location.Y + lblDateText.Height + 2)
@@ -238,10 +241,28 @@ Public Class MainForm
         fontSize = TrackBar1.Value
         ChangeFont()
         My.Settings.FontSize = fontSize
+        lblFontSize.Text = "Font Size: " & fontSize
     End Sub
 
     Private Sub ChangeFont()
+        rtbDiaryEntry.Font = New Font(fontName, fontSize)
         lblFontSize.Text = "Font Size: " & fontSize
-        rtbDiaryEntry.Font = New Font("Consolas", fontSize)
+
+    End Sub
+
+    Private Sub AddFonts()
+        Dim allFonts As New Drawing.Text.InstalledFontCollection
+        Dim fontFamilies() As FontFamily = allFonts.Families()
+
+        For Each myFont As FontFamily In fontFamilies
+            tscFont.Items.Add(myFont.Name)
+            'ddbFont.DropDownItems.Add(myFont.Name)
+        Next
+    End Sub
+
+    Private Sub TscFont_TextChanged(sender As Object, e As EventArgs) Handles tscFont.SelectedIndexChanged
+        fontName = tscFont.Text
+        ChangeFont()
+        My.Settings.FontName = fontName
     End Sub
 End Class
