@@ -15,9 +15,17 @@ When the application starts up, you must select the root folder of your diary. O
 
 ## Planned Features
 - [ ] Encryption (hopefully)
-- [ ] Ability to change font in entry
+= [x] Export to Zip
+- [x] HiDPI support
+- [x] Change size of text in entry
+- [x] Ability to change font in entry
 
 ## Changelog
+
+### 10/09/2019
+* Added font selector dropdown to StatusBar
+* Default font size: 10
+* Default font: Consolas
 
 ### 10/09/2019
 * Added Slider to change the font size of the text
