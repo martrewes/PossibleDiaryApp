@@ -68,7 +68,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("8")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("10")>  _
         Public Property FontSize() As Integer
             Get
                 Return CType(Me("FontSize"),Integer)
