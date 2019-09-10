@@ -14,12 +14,16 @@ When the application starts up, you must select the root folder of your diary. O
 * Works on Linux under Wine (Tested Wine 4.0 + Mono)
 
 ## Planned Features
-* Encryption (hopefully)
+- [ ] Encryption (hopefully)
+- [ ] Ability to change font in entry
 
 ## Changelog
 
-### 09/09/2019
+### 10/09/2019
+* Added Slider to change the font size of the text
+* This setting is also saved on change, and loads if set
 
+### 09/09/2019
 * Added automatic refresh of TreeNode so updates on change of day
 * Added HiDPI compatibility (Tested at 150% scale, my default)
 * Anchored entry and TreeView to the bottom of the window so it resizes correctly
