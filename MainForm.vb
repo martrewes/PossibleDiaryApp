@@ -27,6 +27,7 @@ Public Class MainForm
         fontName = My.Settings.FontName
         AddFonts()
         ChangeFont()
+        cbxFont.Text = fontName
         tvbRoot.Width = calMonth.Width
         rtbDiaryEntry.Location = New Point(tvbRoot.Width + 2, lblDateText.Location.Y + lblDateText.Height + 2)
         rtbDiaryEntry.Width = ClientSize.Width - (tvbRoot.Width + 2)
@@ -255,13 +256,12 @@ Public Class MainForm
         Dim fontFamilies() As FontFamily = allFonts.Families()
 
         For Each myFont As FontFamily In fontFamilies
-            tscFont.Items.Add(myFont.Name)
-            'ddbFont.DropDownItems.Add(myFont.Name)
+            cbxFont.Items.Add(myFont.Name)
         Next
     End Sub
 
-    Private Sub TscFont_TextChanged(sender As Object, e As EventArgs) Handles tscFont.SelectedIndexChanged
-        fontName = tscFont.Text
+    Private Sub CbxFont_TextChanged(sender As Object, e As EventArgs) Handles cbxFont.SelectedIndexChanged
+        fontName = cbxFont.Text
         ChangeFont()
         My.Settings.FontName = fontName
     End Sub

@@ -38,13 +38,13 @@ Partial Class MainForm
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.lblCharCount = New System.Windows.Forms.ToolStripStatusLabel()
         Me.lblWordCount = New System.Windows.Forms.ToolStripStatusLabel()
-        Me.ddbFont = New System.Windows.Forms.ToolStripDropDownButton()
-        Me.tscFont = New System.Windows.Forms.ToolStripComboBox()
         Me.lblDateText = New System.Windows.Forms.Label()
         Me.sfDialog = New System.Windows.Forms.SaveFileDialog()
         Me.TrackBar1 = New System.Windows.Forms.TrackBar()
         Me.lblFontSize = New System.Windows.Forms.Label()
         Me.ToolStripComboBox1 = New System.Windows.Forms.ToolStripComboBox()
+        Me.cbxFont = New System.Windows.Forms.ComboBox()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.MenuStrip1.SuspendLayout()
         Me.StatusStrip1.SuspendLayout()
         CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -81,10 +81,10 @@ Partial Class MainForm
         '
         Me.tvbRoot.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
-        Me.tvbRoot.Location = New System.Drawing.Point(0, 300)
+        Me.tvbRoot.Location = New System.Drawing.Point(0, 294)
         Me.tvbRoot.Margin = New System.Windows.Forms.Padding(4, 5, 4, 5)
         Me.tvbRoot.Name = "tvbRoot"
-        Me.tvbRoot.Size = New System.Drawing.Size(312, 353)
+        Me.tvbRoot.Size = New System.Drawing.Size(312, 364)
         Me.tvbRoot.TabIndex = 4
         '
         'tvbImgList
@@ -148,7 +148,7 @@ Partial Class MainForm
         'StatusStrip1
         '
         Me.StatusStrip1.ImageScalingSize = New System.Drawing.Size(24, 24)
-        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lblCharCount, Me.lblWordCount, Me.ddbFont})
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lblCharCount, Me.lblWordCount})
         Me.StatusStrip1.Location = New System.Drawing.Point(0, 660)
         Me.StatusStrip1.Name = "StatusStrip1"
         Me.StatusStrip1.Padding = New System.Windows.Forms.Padding(21, 0, 2, 0)
@@ -171,29 +171,6 @@ Partial Class MainForm
         Me.lblWordCount.Size = New System.Drawing.Size(68, 25)
         Me.lblWordCount.Text = "Words:"
         '
-        'ddbFont
-        '
-        Me.ddbFont.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.ddbFont.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.tscFont})
-        Me.ddbFont.Image = CType(resources.GetObject("ddbFont.Image"), System.Drawing.Image)
-        Me.ddbFont.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ddbFont.Name = "ddbFont"
-        Me.ddbFont.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.ddbFont.Size = New System.Drawing.Size(131, 29)
-        Me.ddbFont.Text = "Change Font"
-        Me.ddbFont.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.ddbFont.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage
-        Me.ddbFont.ToolTipText = "Change Font"
-        '
-        'tscFont
-        '
-        Me.tscFont.DropDownHeight = 150
-        Me.tscFont.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.tscFont.DropDownWidth = 150
-        Me.tscFont.FlatStyle = System.Windows.Forms.FlatStyle.System
-        Me.tscFont.Name = "tscFont"
-        Me.tscFont.Size = New System.Drawing.Size(240, 33)
-        '
         'lblDateText
         '
         Me.lblDateText.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
@@ -215,6 +192,7 @@ Partial Class MainForm
         '
         'TrackBar1
         '
+        Me.TrackBar1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.TrackBar1.AutoSize = False
         Me.TrackBar1.Location = New System.Drawing.Point(156, 663)
         Me.TrackBar1.Maximum = 32
@@ -228,6 +206,7 @@ Partial Class MainForm
         '
         'lblFontSize
         '
+        Me.lblFontSize.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.lblFontSize.AutoSize = True
         Me.lblFontSize.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.lblFontSize.Location = New System.Drawing.Point(37, 663)
@@ -242,11 +221,40 @@ Partial Class MainForm
         Me.ToolStripComboBox1.Name = "ToolStripComboBox1"
         Me.ToolStripComboBox1.Size = New System.Drawing.Size(121, 33)
         '
+        'cbxFont
+        '
+        Me.cbxFont.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.cbxFont.BackColor = System.Drawing.SystemColors.Control
+        Me.cbxFont.DropDownHeight = 200
+        Me.cbxFont.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cbxFont.FlatStyle = System.Windows.Forms.FlatStyle.System
+        Me.cbxFont.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.cbxFont.FormattingEnabled = True
+        Me.cbxFont.IntegralHeight = False
+        Me.cbxFont.Location = New System.Drawing.Point(444, 662)
+        Me.cbxFont.MaxDropDownItems = 10
+        Me.cbxFont.Name = "cbxFont"
+        Me.cbxFont.Size = New System.Drawing.Size(224, 33)
+        Me.cbxFont.TabIndex = 14
+        '
+        'Label1
+        '
+        Me.Label1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
+        Me.Label1.AutoSize = True
+        Me.Label1.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.Location = New System.Drawing.Point(315, 665)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(123, 25)
+        Me.Label1.TabIndex = 15
+        Me.Label1.Text = "Selected Font:"
+        '
         'MainForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 20.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1200, 692)
+        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.cbxFont)
         Me.Controls.Add(Me.lblFontSize)
         Me.Controls.Add(Me.TrackBar1)
         Me.Controls.Add(Me.lblDateText)
@@ -290,7 +298,7 @@ Partial Class MainForm
     Friend WithEvents sfDialog As SaveFileDialog
     Friend WithEvents TrackBar1 As TrackBar
     Friend WithEvents lblFontSize As Label
-    Friend WithEvents ddbFont As ToolStripDropDownButton
     Friend WithEvents ToolStripComboBox1 As ToolStripComboBox
-    Friend WithEvents tscFont As ToolStripComboBox
+    Friend WithEvents cbxFont As ComboBox
+    Friend WithEvents Label1 As Label
 End Class
