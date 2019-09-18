@@ -15,7 +15,7 @@ When the application starts up, you must select the root folder of your diary. O
 
 ## Planned Features
 - [ ] Encryption (hopefully)
-= [x] Export to Zip
+- [x] Export to Zip
 - [x] HiDPI support
 - [x] Change size of text in entry
 - [x] Ability to change font in entry
